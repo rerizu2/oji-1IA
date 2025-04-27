@@ -177,17 +177,31 @@
     } else if (page === 'schedule') {
       content.innerHTML = `
         <h1>時間割</h1>
-        <p>ここに時間割の内容を表示します。</p>
+        <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQ0try5rh29bXvIfaEkguZxKXkh4qunWPHoAbNkZOreHdqWw_nLAQjdhCZ90JxvPlEfPdnSZ39hcfSy/pubhtml?gid=0&amp;single=true&amp;widget=true&amp;headers=false"></iframe>
       `;
     } else if (page === 'calendar') {
       content.innerHTML = `
         <h1>カレンダー</h1>
-        <p>ここにカレンダーの内容を表示します。</p>
+        <iframe src="https://calendar.google.com/calendar/embed?src=c_fbf643063a2dde9349d8d221fe065fb5fdc4d9f469e6de2e38f3346ca2bf5ecd%40group.calendar.google.com&ctz=Asia%2FTokyo" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
       `;
     } else if (page === 'print') {
       content.innerHTML = `
         <h1>配布プリント</h1>
-        <p>ここに配布プリントの内容を表示します。</p>
+        <details open>
+          <summary>4月の配布プリント</summary>
+          <details>
+            <summary>4月24日</summary>
+            <img src="県立高校学習用コンピュータ等　貸出希望調査票.PNG" alt="4月24日のプリント（1）">
+            <img src="ベルマークプリント（表）.PNG" alt="4月24日のプリント（2）">
+            <img src="ベルマークプリント（裏）.PNG" alt="4月24日のプリント（3）">
+          </details>
+          <details>
+            <summary>4月25日</summary>
+            <img src="R7t¦_tﬁL‰ ;_ver6.xlsx.pdf" alt="4月25日のプリント（1）">
+            <img src="R7t¦_tﬁL‰ ;_ver6.xlsx.pdf２" alt="4月25日のプリント（2）">
+            <img src="R705_t¦L‰‹ı.xlsx.pdf" alt="4月25日のプリント(3)">
+            <img src="眼科検診プリント.PNG" alt="4月25日（4）">
+        </details>
       `;
     }
   }
