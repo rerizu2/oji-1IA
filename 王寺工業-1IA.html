@@ -26,17 +26,11 @@
       color: white;
     }
 
-    .password-screen input {
+    .password-screen input,
+    .password-screen button {
       padding: 10px;
       font-size: 16px;
       margin-top: 10px;
-    }
-
-    .password-screen button {
-      padding: 10px 20px;
-      margin-top: 10px;
-      font-size: 16px;
-      cursor: pointer;
     }
 
     .main-content {
@@ -50,7 +44,6 @@
       color: white;
       padding: 20px 0;
       text-align: center;
-      width: 100%;
     }
 
     nav ul {
@@ -86,7 +79,6 @@
       font-weight: bold;
       color: white;
       text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
-      width: 100%;
     }
 
     .page-content {
@@ -103,12 +95,10 @@
       color: white;
       text-align: center;
       padding: 15px 0;
-      width: 100%;
-      position: relative;
     }
 
-    .responsive-calendar iframe {
-      border: 0;
+    iframe {
+      border: none;
     }
   </style>
 </head>
@@ -136,7 +126,7 @@
   </header>
 
   <section class="hero">
-     ようこそ<br>1IAページへ
+    ようこそ、1IAページへ
   </section>
 
   <section class="page-content" id="page-content">
@@ -155,8 +145,9 @@
 </div>
 
 <script>
+  const correctPassword = "0h4MO";
+
   function checkPassword() {
-    const correctPassword = "0h4MO";
     const input = document.getElementById("password-input").value;
     if (input === correctPassword) {
       document.getElementById("password-screen").style.display = "none";
@@ -164,6 +155,13 @@
     } else {
       alert("パスワードが違います！");
     }
+  }
+
+  function getResponsiveWidth() {
+    const w = window.innerWidth;
+    if (w > 1000) return 1000;       // PC
+    if (w > 600) return 600;         // タブレット or 横画面スマホ
+    return 300;                      // スマホ縦画面
   }
 
   function showPage(page) {
@@ -179,34 +177,34 @@
         </p>
       `;
     } else if (page === 'schedule') {
+      const width = getResponsiveWidth();
       content.innerHTML = `
         <h1>時間割</h1>
-        <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQ0try5rh29bXvIfaEkguZxKXkh4qunWPHoAbNkZOreHdqWw_nLAQjdhCZ90JxvPlEfPdnSZ39hcfSy/pubhtml?widget=true&amp;headers=false" width="1000" height="300"></iframe>
+        <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQ0try5rh29bXvIfaEkguZxKXkh4qunWPHoAbNkZOreHdqWw_nLAQjdhCZ90JxvPlEfPdnSZ39hcfSy/pubhtml?widget=true&amp;headers=false" width="${width}" height="300"></iframe>
       `;
     } else if (page === 'calendar') {
-      const width = window.innerWidth;
-      const height = window.innerHeight;
-      let iframeHTML = '';
-
-      if (width > 1024) {
-        // パソコン
-        iframeHTML = `<iframe src="https://calendar.google.com/calendar/embed?src=youmuyizheng%40gmail.com&ctz=Asia%2FTokyo" width="800" height="600" frameborder="0" scrolling="no"></iframe>`;
-      } else if (width > height) {
-        // 横向きスマホ/タブレット
-        iframeHTML = `<iframe src="https://calendar.google.com/calendar/embed?src=youmuyizheng%40gmail.com&ctz=Asia%2FTokyo" width="600" height="400" frameborder="0" scrolling="no"></iframe>`;
-      } else {
-        // 縦向きスマホ（狭い画面）
-        iframeHTML = `<iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQ0try5rh29bXvIfaEkguZxKXkh4qunWPHoAbNkZOreHdqWw_nLAQjdhCZ90JxvPlEfPdnSZ39hcfSy/pubhtml?widget=true&amp;headers=false" width="100%" height="300"></iframe>`;
-      }
-
+      const width = getResponsiveWidth();
       content.innerHTML = `
         <h1>カレンダー</h1>
-        <div class="responsive-calendar">${iframeHTML}</div>
+        <iframe src="https://calendar.google.com/calendar/embed?src=youmuyizheng%40gmail.com&ctz=Asia%2FTokyo" width="${width}" height="300" frameborder="0" scrolling="no"></iframe>
       `;
     } else if (page === 'print') {
-      content.innerHTML = `<h1>配布プリント</h1><p>（ここにプリント情報を追加）</p>`;
+      content.innerHTML = `
+        <h1>配布プリント</h1>
+        <p>配布プリント情報は現在準備中です。</p>
+      `;
     }
   }
+
+  // 初回ロード時に画面サイズに合わせて初期表示内容の幅を調整（オプション）
+  window.addEventListener("resize", () => {
+    const pageContent = document.getElementById("page-content");
+    if (pageContent.innerHTML.includes("<iframe")) {
+      const currentPage = pageContent.querySelector("h1")?.textContent || "";
+      if (currentPage === "時間割") showPage("schedule");
+      if (currentPage === "カレンダー") showPage("calendar");
+    }
+  });
 </script>
 
 </body>
