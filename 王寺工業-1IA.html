@@ -120,7 +120,8 @@
         <li><a onclick="showPage('home')">ホームページ</a></li>
         <li><a onclick="showPage('schedule')">時間割</a></li>
         <li><a onclick="showPage('calendar')">カレンダー</a></li>
-        <li><a onclick="showPage('print')">配布プリント</a></li>
+        <li><a onclick="showPage('test')">中間テスト範囲</a></li>
+        <li><a onclick="showPage('print')">配布プリント</li>
       </ul>
     </nav>
   </header>
@@ -188,10 +189,23 @@
         <h1>カレンダー</h1>
         <iframe src="https://calendar.google.com/calendar/embed?src=youmuyizheng%40gmail.com&ctz=Asia%2FTokyo" width="${width}" height="400" frameborder="0" scrolling="no"></iframe>
       `;
+    } else if (page === 'test') {
+      content.innerHTML = `
+      <h1>中間テスト範囲</h1>
+      <img src="https://chat.google.com/u/0/api/get_attachment_url?url_type=FIFE_URL&content_type=image%2Fjpeg&attachment_token=AOo0EEXeP1XX3li5zjsbZdwfLD8xwQFog%2BTf%2FGV3GWqyGX5%2FMCxQDf099UTZed7lNSj3Vw%2Bba1f9mUmLSk1XWNF1fSAqqDA3jXXxUCZoRrnt%2F831qIZahHhlU%2Fa13NRhZ4cGkSGeGxTLpbzBfGsbb3NgKqQl%2BkdYrg8NOrztFZorYOhPYg3uSknsnXL9HV%2FL%2BbX7pEvRmFRXmcOzWvkZHNCqO59k%2BZ6ZrZDj4DLTViYBKlwyJDg%2FIiBdnuH%2B9m%2F7aowtIhqxVeRM99oLt14tOB9oMmcFy0zqO88MQcZoXFa20uesGspvJktyny1Q64EAYZViZ6BCRxC55XXx5apq%2BK0ddXQ7VRSjgxrRDFBHvmsf9O1TIim0L4TGxymzSZ0aqMwFqaLYLygrzhBd52UmTxM0c9MAWQ55L%2BZ0VNMAuHSynFXmF%2F6ibO7vRRD0KdJJbFHvtmkKGifeRe3kGDwkkJWjsBkJGLpr2hi60%2B88t5ULNR0puu9g3bpyNQnlcKNPNbOn5yMaApV6bclUGANhrN4BgZLY%2BsH0tNIj9iFY8XNHK%2BZBfKIw2xLoE%2BiZnr8emE41zM4Z5GszJUPjCHSwO5nS03txPN5sGyEwGmaImi0UkRWCFgP32ULqgzDJXUMB&allow_caching=true&sz=w1920-h1200&auditContext=forDisplay" alt="中間テスト範囲" width="600">
+      `;
     } else if (page === 'print') {
       content.innerHTML = `
         <h1>配布プリント</h1>
-        <p>配布プリント情報は現在準備中です。期限は5/1〜5/10</p>
+        <details open="open">
+          <summary>5月</summary>
+          <details>
+            <summary>5月 Error! 日</summary>
+            　　<ul>
+                  <li><p>無題の写真404</p></li>
+               </ul>
+          </details>
+        </details>
       `;
     }
   }
